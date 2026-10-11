@@ -153,25 +153,11 @@ graph TD
 
 ## 📸 Progress Screenshots & Verification Evidence
 
-All guides include structured verification placeholders. When you complete a milestone, save your screenshot into the `assets/screenshots/` folder using the standard naming convention:
+All guides include structured **User Verification Screenshot Submission Boxes**. When you complete a milestone, you can paste, drag-and-drop, or link your screenshot evidence directly into your working notebook in `modules_filled/`. 
 
-```text
-assets/screenshots/
-├── 01_1_imager_config.png
-├── 01_2_flashing_success.png
-├── 02_1_router_dhcp_reservation.png
-├── 02_2_ssh_login_banner.png
-├── 03_1_lsblk_output.png
-├── 03_2_fstab_mount_check.png
-├── 04_1_tailscale_admin_console.png
-├── 04_2_tailscale_verification.png
-├── 05_1_docker_hello_world.png
-├── 05_2_docker_compose_test.png
-├── 06_1_immich_env_config.png
-├── 06_2_immich_containers_healthy.png
-├── 06_3_immich_web_ui.png
-├── 07_1_tailscale_web_access.png
-└── 07_2_mobile_sync_verification.png
+Optional: If you wish to organize your image files inside the repository, save them into the `assets/screenshots/` directory and reference them using standard Markdown:
+```markdown
+![Milestone Verification](assets/screenshots/your_screenshot_name.png)
 ```
 
 Replacing these files will automatically update the rendered previews inside each Jupyter notebook!
