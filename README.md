@@ -108,6 +108,15 @@ graph TD
 
 ---
 
+### 🎯 Your Selected Hardware Profile & Tuning Guide
+
+| Component | Selected Hardware | Engineering Notes & Tuning Actions |
+| :--- | :--- | :--- |
+| **Compute Board** | **Raspberry Pi 4 Model B (4GB RAM)** | • Memory Tuning: Keep `MACHINE_LEARNING_WORKERS=1` in Immich `.env` to avoid out-of-memory errors.<br>• Expand Linux Swap file from 100MB to 2048MB (`/etc/dphys-swapfile`) for stability during initial photo indexing.<br>• Run headless (Raspberry Pi OS Lite 64-bit) to preserve ~3.8GB of RAM entirely for Docker containers. |
+| **Storage** | **M.2 NVMe SSD in USB 3.0 Enclosure** | • Connect strictly to the **blue USB 3.0 ports** (the black ports are USB 2.0 and capped at ~40MB/s).<br>• Enclosure Chipset: Realtek RTL9210 or ASMedia ASM2362 recommended for stable Linux UASP support.<br>• Power Alert: Pi 4 USB ports provide up to 1.2A (~6W) shared. Fast NVMe writes can cause voltage sags; ensure the official 5.1V/3.0A power supply is used. |
+
+---
+
 ## 💿 Operating System Recommendations & Technical Trade-offs
 
 | Operating System | Recommendation Level | Technical Rationale |
