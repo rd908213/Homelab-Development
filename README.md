@@ -7,7 +7,7 @@
 
 ## 🧭 Laboratory Guide Overview & Roadmap
 
-Inspired by the structured academic format of the **Purdue University ME597 (Industrial Internet of Things)** laboratory curriculum, this repository decomposes a comprehensive homelab NAS project into **7 core steps** and **15 bite-sized, hands-on Jupyter notebooks**.
+Inspired by the structured academic format of the **Purdue University ME597 (Industrial Internet of Things)** laboratory curriculum, this repository decomposes a comprehensive homelab NAS project into **7 core steps** and **16 bite-sized, hands-on Jupyter notebooks**.
 
 Each notebook is designed for a self-contained 20–30 minute milestone, featuring:
 1. **Targeted Learning Goals** (actionable objectives)
@@ -24,6 +24,7 @@ Each notebook is designed for a self-contained 20–30 minute milestone, featuri
 | :---: | :--- | :--- | :--- | :--- |
 | **1** | **OS Setup** | [Module 1.1: OS Selection & Prep](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/01_os_setup/01_1_os_selection_and_prep.ipynb) | Evaluate OS choices; configure 64-bit ARM image in Imager | Imager customization panel |
 | **1** | **OS Setup** | [Module 1.2: Headless Flashing & Boot](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/01_os_setup/01_2_headless_flashing_and_boot.ipynb) | Flash media, verify power delivery, headless initial boot | Flashing verification & LED status |
+| **1** | **OS Setup** | [Module 1.3: Post-Boot Security & Password](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/01_os_setup/01_3_post_boot_security_and_password.ipynb) | Rotate bootstrap password, verify PAM & `sudo -k` elevation | `passwd` & `sudo whoami` verification |
 | **2** | **Networking** | [Module 2.1: LAN Discovery & Static IP](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/02_network_configuration/02_1_network_discovery_and_ip.ipynb) | mDNS scan, router DHCP static lease / MAC reservation | Router DHCP table & static IP |
 | **2** | **Networking** | [Module 2.2: Hardening SSH & Baseline](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/02_network_configuration/02_2_secure_ssh_and_baseline.ipynb) | Ed25519 key login, disable password SSH, package upgrade | SSH login banner & `htop` dashboard |
 | **3** | **Storage** | [Module 3.1: SSD Hardware & Partitioning](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/03_storage_expansion/03_1_ssd_hardware_and_partitioning.ipynb) | USB 3.0 / PCIe UASP check, GPT partition, format ext4 | `lsblk -f` showing storage partition |
