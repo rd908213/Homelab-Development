@@ -1,0 +1,41 @@
+---
+name: notebook-authoring
+description: >-
+  Step-by-step workflow for researching, gathering visual assets, and generating
+  self-contained laboratory notebooks following the Purdue ME597 IIoT standard,
+  complete with dual-folder synchronization.
+---
+
+# Notebook Authoring Workflow
+
+Follow this procedure whenever creating a new laboratory guide notebook (`.ipynb`) in this project.
+
+## Step 1: Technical Background Research
+1. Identify the core technical objectives and system architecture of the milestone.
+2. Conduct targeted technical research using web search or official documentation (e.g., Raspberry Pi documentation, Linux man pages, Docker docs, Immich architecture specifications).
+3. Extract precise CLI commands, package names, service unit names, configuration options, and kernel parameters.
+
+## Step 2: Visual Asset Acquisition & Diagramming
+1. Identify necessary visual aids:
+   - **Hardware Photos:** Official product images (RPi board, SSD, enclosures) stored in `assets/hardware/`.
+   - **Architecture & Setup Figures:** Official screenshots, GUI dialogs, or clean technical infographics stored in `assets/reference/`.
+   - **Milestone Screenshot Placeholders:** Generate corresponding 16:9 placeholder images (e.g., `assets/screenshots/<step>_<task>_verification.png`).
+2. If a clean technical diagram is needed, use `generate_image` or create vector SVG/diagram assets and save to `assets/reference/`.
+
+## Step 3: Self-Contained Notebook Assembly (Purdue ME597 Lab Style)
+Construct the `.ipynb` file with the following standard cell structure:
+1. **Header Cell:** Module title and step subtitle.
+2. **Learning Goals:** 3–5 actionable, concrete bullet points (`🎯 Learning Goals`).
+3. **Conceptual Background:** Deep, self-contained technical explanation.
+   - **CRITICAL:** Do NOT include open-ended homework or investigation questions. All technical answers, rationale, and context must be fully articulated for the reader.
+4. **Official Reference Figures:** High-quality reference images and diagrams pre-linked via `<img src="../../assets/...">`.
+5. **Step-by-Step Hands-on Guide:** Chronological tasks (`Task X.Y.Z`) with copy-pasteable commands and expected outputs.
+6. **Verification & Screenshot Submissions:** Dedicated submission section with embedded markdown links to the screenshot placeholder.
+7. **Module Checkpoint & Reflection:** Checkpoint checklist with a link to the subsequent module in sequence.
+
+## Step 4: Dual-Folder Mirroring & Registry Update
+1. Save the new notebook identically to both:
+   - `modules/<category>/<notebook>.ipynb`
+   - `modules_filled/<category>/<notebook>.ipynb`
+2. Update the repository [README.md](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/README.md) roadmap table with the new guide link, milestone description, and verification proof.
+3. Update the total notebook counter in `README.md`.
