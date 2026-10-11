@@ -17,10 +17,10 @@ Follow this procedure whenever creating a new laboratory guide notebook (`.ipynb
 
 ## Step 2: Visual Asset Acquisition & Diagramming
 1. Identify necessary visual aids:
-   - **Hardware Photos:** Official product images (RPi board, SSD, enclosures) stored in `assets/hardware/`.
-   - **Architecture & Setup Figures:** Official screenshots, GUI dialogs, or clean technical infographics stored in `assets/reference/`.
-   - **Milestone Screenshot Placeholders:** Generate corresponding 16:9 placeholder images (e.g., `assets/screenshots/<step>_<task>_verification.png`).
-2. If a clean technical diagram is needed, use `generate_image` or create vector SVG/diagram assets and save to `assets/reference/`.
+   - **Hardware Photos:** Sourced exclusively from official manufacturer product pages (e.g., Western Digital, UGREEN, Raspberry Pi) into `assets/hardware/`.
+   - **Architecture & Setup Figures:** Sourced exclusively from official documentation or official GitHub releases into `assets/reference/`.
+2. **NEVER use AI image generation (`generate_image`)** to create synthetic images or diagrams.
+3. If an architectural layout, network flow, or security authentication flow is needed, write a native Markdown **Mermaid** (`mermaid`) code block or clean Markdown table.
 
 ## Step 3: Self-Contained Notebook Assembly (Purdue ME597 Lab Style)
 Construct the `.ipynb` file with the following standard cell structure:
@@ -28,9 +28,9 @@ Construct the `.ipynb` file with the following standard cell structure:
 2. **Learning Goals:** 3–5 actionable, concrete bullet points (`🎯 Learning Goals`).
 3. **Conceptual Background:** Deep, self-contained technical explanation.
    - **CRITICAL:** Do NOT include open-ended homework or investigation questions. All technical answers, rationale, and context must be fully articulated for the reader.
-4. **Official Reference Figures:** High-quality reference images and diagrams pre-linked via `<img src="../../assets/...">`.
+4. **Official Reference Figures:** High-quality reference images pre-linked via `<img src="../../assets/...">` or native Mermaid code blocks.
 5. **Step-by-Step Hands-on Guide:** Chronological tasks (`Task X.Y.Z`) with copy-pasteable commands and expected outputs.
-6. **Verification & Screenshot Submissions:** Dedicated submission section with embedded markdown links to the screenshot placeholder.
+6. **Verification & Screenshot Submissions:** Dedicated **User Verification Screenshot Submission Box** (Markdown blockquote with drag-and-drop placeholder instructions, NEVER dummy or placeholder binary image files).
 7. **Module Checkpoint & Reflection:** Checkpoint checklist with a link to the subsequent module in sequence.
 
 ## Step 4: Dual-Folder Mirroring & Registry Update
