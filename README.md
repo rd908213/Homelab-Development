@@ -113,7 +113,28 @@ graph TD
 | Component | Selected Hardware | Engineering Notes & Tuning Actions |
 | :--- | :--- | :--- |
 | **Compute Board** | **Raspberry Pi 4 Model B (4GB RAM)** | • Memory Tuning: Keep `MACHINE_LEARNING_WORKERS=1` in Immich `.env` to avoid out-of-memory errors.<br>• Expand Linux Swap file from 100MB to 2048MB (`/etc/dphys-swapfile`) for stability during initial photo indexing.<br>• Run headless (Raspberry Pi OS Lite 64-bit) to preserve ~3.8GB of RAM entirely for Docker containers. |
-| **Storage** | **M.2 NVMe SSD in USB 3.0 Enclosure** | • Connect strictly to the **blue USB 3.0 ports** (the black ports are USB 2.0 and capped at ~40MB/s).<br>• Enclosure Chipset: Realtek RTL9210 or ASMedia ASM2362 recommended for stable Linux UASP support.<br>• Power Alert: Pi 4 USB ports provide up to 1.2A (~6W) shared. Fast NVMe writes can cause voltage sags; ensure the official 5.1V/3.0A power supply is used. |
+| **Drive (SSD)** | **Western Digital WD Blue SN5000 (1TB/2TB)** | • PCIe Gen 4.0 x4 M.2 2280 NVMe SSD with Western Digital nCache 4.0.<br>• DRAM-less architecture with low idle power draw, minimizing thermal throttling inside compact enclosures.<br>• Single-sided form factor fits flush into portable enclosures. |
+| **Enclosure** | **UGREEN 10Gbps M.2 NVMe Enclosure** | • Connect strictly to the **blue USB 3.0 ports** (the black ports are USB 2.0 and capped at ~40MB/s).<br>• Enclosure Chipset: Realtek RTL9210 with UASP support.<br>• Aluminum grooved chassis functions as a passive heatsink for the SN5000.<br>• Power Alert: Pi 4 USB ports provide up to 1.2A (~6W) shared. Ensure the official 5.1V/3.0A power supply is used. |
+
+#### 📸 Hardware & Reference Showcase
+
+<p align="center">
+  <img src="assets/hardware/rpi4_model_b.jpg" width="30%" alt="Raspberry Pi 4" />
+  <img src="assets/hardware/wd_blue_sn5000.jpg" width="30%" alt="WD Blue SN5000 NVMe SSD" />
+  <img src="assets/hardware/ugreen_nvme_enclosure.jpg" width="30%" alt="UGREEN M.2 NVMe Enclosure" />
+</p>
+<p align="center">
+  <em>Figure: Raspberry Pi 4 Model B (Left), Western Digital WD Blue SN5000 (Center), and UGREEN M.2 NVMe Enclosure (Right).</em>
+</p>
+
+#### 📸 Official Immich Web & Mobile Interface Showcase
+
+<p align="center">
+  <img src="assets/reference/immich_screenshots.png" width="90%" alt="Immich Web and Mobile Interface" />
+</p>
+<p align="center">
+  <em>Figure: Immich Web App & Mobile Application Experience (Official Immich Documentation).</em>
+</p>
 
 ---
 
