@@ -26,3 +26,6 @@ Desktop.ini
 # IDE files
 .vscode/
 .idea/
+
+# Personal Files
+modules_filled/
