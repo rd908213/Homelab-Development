@@ -28,10 +28,11 @@ Construct the `.ipynb` file with the following standard cell structure:
 2. **Learning Goals:** 3–5 actionable, concrete bullet points (`🎯 Learning Goals`).
 3. **Conceptual Background:** Deep, self-contained technical explanation.
    - **CRITICAL:** Do NOT include open-ended homework or investigation questions. All technical answers, rationale, and context must be fully articulated for the reader.
-4. **Official Reference Figures:** High-quality reference images pre-linked via `<img src="../../assets/...">` or native Mermaid code blocks.
-5. **Step-by-Step Hands-on Guide:** Chronological tasks (`Task X.Y.Z`) with copy-pasteable commands and expected outputs.
-6. **Verification & Screenshot Submissions:** Dedicated **User Verification Screenshot Submission Box** (Markdown blockquote with drag-and-drop placeholder instructions, NEVER dummy or placeholder binary image files).
-7. **Module Checkpoint & Reflection:** Checkpoint checklist with a link to the subsequent module in sequence.
+4. **Interleaved Reference Figures:** High-quality official reference images (`<img src="../../assets/...">`) or native Mermaid diagrams embedded directly alongside the concepts they illustrate.
+5. **Step-by-Step Hands-on Tasks with Inline Verification:**
+   - Chronological tasks (`Task X.Y.Z`) with copy-pasteable commands and expected outputs.
+   - **Inline Screenshot Submissions:** Every task requiring verification must have its dedicated **User Verification Screenshot Submission Box** placed immediately after the task instructions/output, rather than gathered at the end of the notebook.
+6. **Module Checkpoint & Reflection:** Checkpoint checklist with a link to the subsequent module in sequence at the conclusion of the lab.
 
 ## Step 4: Dual-Folder Mirroring & Registry Update
 1. Save the new notebook identically to both:

@@ -17,9 +17,9 @@ Laboratory and homelab guides require factual, accurate technical references. Sy
 3. **Prefer Native Diagrams (Mermaid / ASCII):**
    - When architectural layouts, network paths, container stacks, or authentication workflows must be illustrated, use native Markdown **Mermaid** (`mermaid`) diagrams or structured Markdown tables rather than generating static images.
 
-4. **No Dummy Image Files for User Milestones:**
+4. **No Dummy Image Files & Inline Placement for User Milestones:**
    - Never create empty, hand-crafted, or placeholder binary image files on disk for user milestones.
-   - Always format milestone verification sections as clean Markdown User Verification Submission Boxes:
+   - Place each **User Verification Screenshot Submission Box** inline immediately after the specific task it verifies (see `inline_screenshot_submissions.md`), rather than grouping them at the end:
      ```markdown
      > ### 📷 User Verification Screenshot Submission Box
      > *Attach your milestone verification screenshot below (drag & drop an image or use a Markdown image link):*
@@ -29,3 +29,4 @@ Laboratory and homelab guides require factual, accurate technical references. Sy
      > 
      > ```
      ```
+
