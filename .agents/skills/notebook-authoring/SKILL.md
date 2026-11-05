@@ -28,7 +28,7 @@ Construct the `.ipynb` file with the following standard cell structure:
 2. **Learning Goals:** 3–5 actionable, concrete bullet points (`🎯 Learning Goals`).
 3. **Conceptual Background:** Deep, self-contained technical explanation.
    - **CRITICAL:** Do NOT include open-ended homework or investigation questions. All technical answers, rationale, and context must be fully articulated for the reader.
-4. **Interleaved Reference Figures:** High-quality official reference images (`<img src="../../assets/...">`) or native Mermaid diagrams embedded directly alongside the concepts they illustrate.
+4. **Interleaved Reference Figures:** High-quality official reference images (`<img src="https://github.com/rd908213/Homelab-Development/blob/main/assets/...?raw=true">`) or native Mermaid diagrams embedded directly alongside the concepts they illustrate.
 5. **Step-by-Step Hands-on Tasks with Inline Verification:**
    - Chronological tasks (`Task X.Y.Z`) with copy-pasteable commands and expected outputs.
    - **Inline Screenshot Submissions:** Every task requiring verification must have its dedicated **User Verification Screenshot Submission Box** placed immediately after the task instructions/output, rather than gathered at the end of the notebook.
