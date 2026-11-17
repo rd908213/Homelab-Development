@@ -32,7 +32,7 @@ Each notebook is designed for a self-contained 20–30 minute milestone, featuri
 | **4** | **Personal VPN** | [Module 4.1: VPN & Mesh Architecture](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/04_personal_vpn/04_1_vpn_architecture_tailscale.ipynb) | Understand CGNAT, WireGuard mesh vs port forwarding | Tailscale admin console setup |
 | **4** | **Personal VPN** | [Module 4.2: Tailscale Node Provisioning](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/04_personal_vpn/04_2_tailscale_setup_and_verification.ipynb) | Install Tailscale, register node, end-to-end ping | `tailscale status` & client ping |
 | **5** | **Docker** | [Module 5.1: Docker Engine Installation](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/05_docker_runtime/05_1_docker_engine_installation.ipynb) | Official Docker upstream repo, non-root user group | `docker run hello-world` output |
-| **5** | **Docker** | [Module 5.2: Compose v2 & Homelab Layout](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/05_docker_runtime/05_2_docker_compose_and_homelab_layout.ipynb) | Compose v2 plugin, directory tree, test container | `docker compose ps` test stack |
+| **5** | **Docker** | [Module 5.2: Docker Compose & Homelab Layout](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/05_docker_runtime/05_2_docker_compose_and_homelab_layout.ipynb) | Compose plugin, directory tree, test container | `docker compose ps` test stack |
 | **6** | **Immich NAS** | [Module 6.1: Immich Architecture & `.env`](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/06_immich_nas_deployment/06_1_immich_architecture_and_env.ipynb) | Microservices overview, Pi thread tuning, SSD path map | Custom `.env` storage mapping |
 | **6** | **Immich NAS** | [Module 6.2: Compose Stack & First Boot](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/06_immich_nas_deployment/06_2_immich_compose_and_first_boot.ipynb) | Image pull, database migrations, container healthchecks | `docker compose ps` all healthy |
 | **6** | **Immich NAS** | [Module 6.3: Admin Setup & Initial Library](file:///c:/Users/rd908/Documents/WebApps/Homelab%20Development/modules/06_immich_nas_deployment/06_3_immich_admin_and_photo_library.ipynb) | Admin onboarding, test photo ingest, resource profiling | Immich web UI & uploaded albums |
@@ -51,7 +51,7 @@ graph TD
         subgraph RPi ["Raspberry Pi 4 / 5 (homelab-nas)"]
             OS["Raspberry Pi OS Lite 64-bit<br>(Debian Bookworm aarch64)"]
             TS["Tailscale Daemon<br>(WireGuard Mesh Peer)"]
-            Docker["Docker Engine & Compose v2"]
+            Docker["Docker Engine & Compose"]
             
             subgraph Stacks ["Immich Stack (Port 2283)"]
                 Server["immich-server<br>(Core REST API)"]
