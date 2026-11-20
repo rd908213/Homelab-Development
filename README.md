@@ -7,18 +7,21 @@
 
 ## 🧭 Laboratory Guide Overview & Roadmap
 
-Inspired by the structured academic format of the **Purdue University ME597 (Industrial Internet of Things)** laboratory curriculum, this repository decomposes a comprehensive homelab NAS project into **7 core steps** and **16 bite-sized, hands-on Jupyter notebooks**.
+Inspired by the structured academic format of the **Purdue University ME597 (Industrial Internet of Things)** laboratory curriculum, this repository decomposes a multi-chapter homelab engineering curriculum into **2 chapters**, **12 core steps**, and **25 bite-sized, hands-on Jupyter notebooks**:
+- **[Chapter 1: Raspberry Pi Immich NAS Server (`01_rpi_immich_server`)](modules/01_rpi_immich_server/README.md):** 7 steps / 16 notebooks building a 24/7 personal photo cloud from bare metal.
+- **[Chapter 2: Second Node GPU Expansion (`02_second_node`)](modules/02_second_node/README.md):** 5 steps / 9 notebooks repurposing a 2019 ASUS ROG Zephyrus gaming laptop (battery removal & AC bypass, thermal refurbishment, wiping unlicensed Windows 11 for Ubuntu Server 24.04 LTS, Gigabit switch networking, offloading NVIDIA CUDA Machine Learning & NVENC transcoding, and deploying Pi-hole v6 DNS & Uptime Kuma on the Raspberry Pi).
 
 Each notebook is designed for a self-contained 20–30 minute milestone, featuring:
 1. **Targeted Learning Goals** (actionable objectives)
 2. **Conceptual Architecture & Background** (system diagrams and engineering trade-offs)
 3. **Step-by-Step Hands-on Instructions** (terminal commands, configs, and sanity checks)
-4. **💡 Research & Self-Discovery Lab Space** (structured prompts with dedicated answer boxes for independent investigation)
-5. **📸 Verification & Screenshot Submissions** (dedicated placeholder slots for documenting your implementation progress)
+4. **📸 Inline Verification & Screenshot Submissions** (dedicated placeholder slots immediately following each milestone task)
 
 ---
 
-### 🗺️ Project Roadmap & Notebook Index
+### 🗺️ Chapter 1 Roadmap: Raspberry Pi Immich NAS (`01_rpi_immich_server`)
+
+> 📖 *See the [Chapter 1 Summary & Key Learnings README](modules/01_rpi_immich_server/README.md) for a quick-reference retrospective.*
 
 | Step | Module | Notebook Guide | Key Milestone Objective | Verification Proof |
 | :---: | :--- | :--- | :--- | :--- |
@@ -38,6 +41,24 @@ Each notebook is designed for a self-contained 20–30 minute milestone, featuri
 | **6** | **Immich NAS** | [Module 6.3: Admin Setup & Initial Library](modules/01_rpi_immich_server/06_immich_nas_deployment/06_3_immich_admin_and_photo_library.ipynb) | Admin onboarding, test photo ingest, resource profiling | Immich web UI & uploaded albums |
 | **7** | **Remote Access** | [Module 7.1: Remote Access Security](modules/01_rpi_immich_server/07_remote_access/07_1_remote_access_security_and_options.ipynb) | Zero-trust threat model, Cloudflare ToS limits, MagicDNS | Web access over Tailscale FQDN |
 | **7** | **Remote Access** | [Module 7.2: Mobile Sync & Maintenance](modules/01_rpi_immich_server/07_remote_access/07_2_mobile_app_sync_and_outside_testing.ipynb) | iOS/Android app config, off-network cellular sync test | Mobile app sync confirmation |
+
+---
+
+### 🗺️ Chapter 2 Roadmap: 2019 ROG Zephyrus GPU Node & Cluster Expansion (`02_second_node`)
+
+> 📖 *See the [Chapter 2 Overview, Shopping List & Architecture README](modules/02_second_node/README.md) for the complete hardware repair BOM, switch topology, and hybrid workload split rationale.*
+
+| Step | Module | Notebook Guide | Key Milestone Objective | Verification Proof |
+| :---: | :--- | :--- | :--- | :--- |
+| **1** | **Hardware & Battery Bypass** | [Module 1.1: Battery Removal & AC Bypass](modules/02_second_node/01_hardware_prep_and_battery_bypass/01_1_hardware_eval_and_battery_bypass.ipynb) | Safe Li-Po removal, Kapton header insulation, EC reset, UPS power bridging | Empty battery bay photo & AC-only BIOS post |
+| **1** | **Hardware & Battery Bypass** | [Module 1.2: Thermal Maintenance & BIOS Prep](modules/02_second_node/01_hardware_prep_and_battery_bypass/01_2_thermal_maintenance_and_bios_prep.ipynb) | Heatsink teardown, CPU/GPU repaste, K5 Pro VRM putty, Secure Boot off | Repasted heatsink photo & BIOS settings check |
+| **2** | **OS & Headless Setup** | [Module 2.1: Ubuntu Server 24.04 LTS Install](modules/02_second_node/02_os_installation_and_headless_setup/02_1_os_selection_and_ubuntu_install.ipynb) | Why Ubuntu Server beats unlicensed Windows 11; full NVMe wipe & OpenSSH | `hostnamectl`, `df -h /` & `lspci` GPU check |
+| **2** | **OS & Headless Setup** | [Module 2.2: Lid-Close Mode & Power Tuning](modules/02_second_node/02_os_installation_and_headless_setup/02_2_headless_lid_close_and_power_tuning.ipynb) | `HandleLidSwitch=ignore`, `consoleblank=60`, `lm-sensors`, SSH key hardening | Closed-lid SSH session & `sensors` thermal check |
+| **3** | **Lab Networking** | [Module 3.1: Switch Topology & Static IP Plan](modules/02_second_node/03_network_expansion_and_cluster_topology/03_1_switch_topology_and_subnet_design.ipynb) | Wire 8-port Gigabit switch, reserve `10.0.0.201`, `iperf3` test & Tailscale mesh | `iperf3` ~940 Mbps & `tailscale status` |
+| **4** | **GPU & Migration** | [Module 4.1: NVIDIA Drivers & Container Toolkit](modules/02_second_node/04_gpu_compute_and_workload_migration/04_1_nvidia_drivers_and_container_toolkit.ipynb) | Headless NVIDIA driver, 60W power cap service, `nvidia-ctk` & Docker Engine | `docker run --gpus all nvidia/cuda nvidia-smi` |
+| **4** | **GPU & Migration** | [Module 4.2: Immich CUDA ML & NVENC Offload](modules/02_second_node/04_gpu_compute_and_workload_migration/04_2_immich_ml_and_transcoding_offload.ipynb) | Deploy `immich-machine-learning:release-cuda` on `:3003`, retire Pi ML container | Live CUDA execution in `nvidia-smi` & Pi RAM freed |
+| **5** | **Pi Core Services** | [Module 5.1: Workload Split & Pi-hole v6 DNS](modules/02_second_node/05_pi_core_services/05_1_pi_workload_strategy_and_pihole.ipynb) | Why core services stay on the Pi; deploy Pi-hole v6 + Tailscale Global DNS | Pi-hole v6 admin dashboard & sinkholed query |
+| **5** | **Pi Core Services** | [Module 5.2: Multi-Node Monitoring (Uptime Kuma)](modules/02_second_node/05_pi_core_services/05_2_homelab_monitoring_uptime_kuma.ipynb) | Deploy Uptime Kuma on Pi to monitor both nodes, CUDA ML `:3003`, and DNS | Uptime Kuma 100% green cluster dashboard |
 
 ---
 
