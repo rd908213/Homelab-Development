@@ -69,6 +69,7 @@ Before beginning the hands-on notebooks, gather the following tools, thermal con
 | **Viscous Thermal Putty (`K5 PRO` or `Upsiren U6 Pro`, 20g)** | Replacing dried/torn factory VRM and GDDR6 VRAM thermal pads. Eliminates pad thickness guesswork (0.5mm vs 1.0mm) so the copper heatsink seats flush against the CPU/GPU dies. | \$12 – \$18 |
 | **99% Isopropyl Alcohol (IPA) + Lint-Free Swabs & Microfiber** | Dissolving baked-on 2019 factory thermal compound and flux residue from the dies and copper heatpipes. | \$6 – \$10 |
 | **Kapton Polyimide Tape (10mm) & ESD Tweezers** | Insulating the exposed motherboard battery header pins after battery removal and securing internal cables. | \$6 – \$8 |
+| **Adhesive Nylon P-Clips / Zip-Tie Mounts + Heavy-Duty Adhesive Velcro** | **Fixing "Table-Bump" DC Barrel Shutoffs:** Anchors the heavy ASUS AC power brick flat to the table/shelf and locks the DC barrel cable in a zero-tension strain-relief loop so bumping the desk can never wiggle the plug loose. | \$6 – \$10 |
 | **Pure Sine-Wave UPS (600VA–1000VA)** *(e.g., CyberPower CP1000PFCLCD or APC BE600M1)* | **The External "Battery Bypass":** Replaces the dead internal Li-Po battery with safe, external battery backup, surge protection, and prevents abrupt Linux filesystem corruption or AC power-spike throttling during brownouts. | \$75 – \$140 |
 
 ### 2. Multi-Node Networking Expansion Kit
