@@ -1,7 +1,7 @@
 # Chapter 2: Multi-Node Homelab Expansion — Repurposing a 2019 ROG Zephyrus (`02_second_node`)
 
 > **Hybrid ARM + x86_64/NVIDIA Homelab Architecture**  
-> *Transforming a retired 2019 ASUS ROG Zephyrus gaming laptop into a battery-bypassed, 24/7 GPU compute node (`homelab-gpu`), uniting the lab with a managed Gigabit switch, offloading heavy Immich AI/CUDA workloads, and dedicating the Raspberry Pi (`homelab-pi`) to ultra-reliable network core services like Pi-hole DNS.*
+> *Transforming a retired 2019 ASUS ROG Zephyrus gaming laptop into a battery-bypassed, 24/7 GPU compute node (`homelab-gpu`), uniting the lab with a Ubiquiti UniFi Switch Enterprise 8 PoE (`USW-Enterprise-8-PoE`), offloading heavy Immich AI/CUDA workloads, and dedicating the Raspberry Pi (`homelab-pi`) to ultra-reliable network core services like Pi-hole DNS.*
 
 ---
 
@@ -27,9 +27,9 @@ By introducing your **2019 ASUS ROG Zephyrus** (`GA502` / `GU502` / `GX502` seri
 
 ```mermaid
 graph TD
-    subgraph LAN ["Unified Home Lab Network (Gigabit Ethernet Switch)"]
+    subgraph LAN ["Unified Home Lab Network (UniFi USW-Enterprise-8-PoE)"]
         Router["Home Router / Gateway<br>(DHCP Static Reservations)"]
-        Switch["5-Port / 8-Port Gigabit Managed Switch<br>(802.3ab Wire-Speed Switching)"]
+        Switch["UniFi Switch Enterprise 8 PoE<br>(8x 2.5GbE PoE+ | 2x 10G SFP+<br>80 Gbps Switching / 40 Gbps Non-Blocking)"]
         
         subgraph Node1 ["Node 1: Raspberry Pi 4 (homelab-pi | 10.0.0.200)"]
             PiOS["Raspberry Pi OS Lite 64-bit"]
@@ -47,8 +47,8 @@ graph TD
     end
     
     Router --- Switch
-    Switch ===|"Cat 6 Patch"| Node1
-    Switch ===|"Cat 6 Patch"| Node2
+    Switch ===|"Port 2 (1 GbE)"| Node1
+    Switch ===|"Port 3 (1 GbE / 2.5 GbE)"| Node2
     ImmichCore --> SSD
     ImmichCore ===|"Port 3003 (LAN Sub-ms RPC)"| ImmichML
     ImmichML --> Nvidia
@@ -73,12 +73,14 @@ Before beginning the hands-on notebooks, gather the following tools, thermal con
 | **Pure Sine-Wave UPS (600VA–1000VA)** *(e.g., CyberPower CP1000PFCLCD or APC BE600M1)* | **The External "Battery Bypass":** Replaces the dead internal Li-Po battery with safe, external battery backup, surge protection, and prevents abrupt Linux filesystem corruption or AC power-spike throttling during brownouts. | \$75 – \$140 |
 
 ### 2. Multi-Node Networking Expansion Kit
-| Item | Purpose | Est. Cost |
+| Item | Purpose | Status / Est. Cost |
 | :--- | :--- | :--- |
-| **8-Port Gigabit Desktop Switch** *(TP-Link TL-SG108E Smart Managed or TL-SG108 Unmanaged Metal)* | Unites `homelab-pi`, `homelab-gpu`, and your router uplink on a single non-blocking 16 Gbps backplane so node-to-node ML traffic never bottlenecks your router's Wi-Fi/CPU, leaving 5+ ports open for future nodes (NAS bay, Proxmox mini-PC, PoE AP). | \$20 – \$30 |
-| **USB 3.0 / USB-C to 2.5GbE or Gigabit Ethernet Adapter** *(Only if your 2019 Zephyrus is the GA502/GU502 without a built-in RJ45 jack; GX502 has native RJ45)* | Provides a rock-solid wired Ethernet connection with Realtek RTL8153/RTL8156 Linux kernel support. | \$15 – \$22 |
-| **3x Short Cat 6 Snagless Patch Cables (1 ft – 3 ft, color-coded)** | Clean, low-latency wiring from Switch $\rightarrow$ Router, Switch $\rightarrow$ `homelab-pi`, and Switch $\rightarrow$ `homelab-gpu`. | \$8 – \$12 |
+| **Ubiquiti UniFi Switch Enterprise 8 PoE (`USW-Enterprise-8-PoE`)** | Enterprise Layer-3 fanless multi-gig switch featuring **8× 2.5 GbE RJ45 PoE+ ports** (802.3af/at, 120W budget, max 32W/port), **2× 10G SFP+ ports**, 80 Gbps switching capacity (40 Gbps non-blocking), internal 150W AC PSU, and a 1.3" color LCM touchscreen. Works immediately as a wire-speed L2 switch in Chapter 2 and unlocks full UniFi Network management in Chapter 3. | **Owned (Acquired)** *(MSRP \$479)* |
+| **USB 3.0 / USB-C to 2.5GbE or Gigabit Ethernet Adapter** *(Optional — unlocks full 2.5GbE on `homelab-gpu`, or required if your 2019 Zephyrus is a `GA502`/`GU502` without built-in RJ45)* | Realtek `RTL8156` (2.5GbE) or `RTL8153` (1GbE) native Linux kernel plug-and-play adapter. Pairing an `RTL8156` 2.5GbE dongle with the `USW-Enterprise-8-PoE` lets `homelab-gpu` communicate at 2.5 Gbps with the Chapter 3 `UNAS 2` NAS! | \$15 – \$25 |
+| **UniFi Patch Cables (`UACC-CABLE-PATCH-0.4M-BL-10`, 0.4m Blue 10-Pack) or Cat 6 Patch Cables** | Ultra-thin 34 AWG bendable-boot patch cables rated for up to 10 GbE and PoE+++. Clean, low-latency wiring for Switch $\rightarrow$ Router, Switch $\rightarrow$ `homelab-pi`, Switch $\rightarrow$ `homelab-gpu`, and Chapter 3 `UNAS 2` expansion. | **Owned (Acquired)** |
 | **32GB USB 3.0 Flash Drive** | Flashing the Ubuntu Server 24.04 LTS (`x86_64`) installer via Ventoy or BalenaEtcher to overwrite the unlicensed Windows 11 install. | \$7 – \$10 |
+
+> 💡 **Compatibility Note (`USW-Enterprise-8-PoE` Active PoE+):** All 8 RJ45 ports support **active** IEEE 802.3af/at (PoE+, max 32W/port), meaning the switch negotiates before energizing a port—plugging non-PoE devices (`homelab-pi`, `homelab-gpu`, home router) is 100% safe. Note that because it is passively cooled (fanless), leave breathable clearance above its aluminum chassis. In **Chapter 3**, when adding the **UniFi UNAS 2** (which requires 60W **PoE++**), you will power the UNAS 2 via its included 60W PoE++ injector inline with a 2.5GbE switch port.
 
 ---
 
@@ -90,7 +92,7 @@ Before beginning the hands-on notebooks, gather the following tools, thermal con
 | **1** | **Hardware & Battery Bypass** | [Module 1.2: Deep Thermal Maintenance & BIOS Server Tuning](./01_hardware_prep_and_battery_bypass/01_2_thermal_maintenance_and_bios_prep.ipynb) | Heatsink teardown, CPU/GPU repaste, K5 Pro VRM putty, Secure Boot off | Repasted heatsink photo & BIOS settings check |
 | **2** | **OS & Headless Setup** | [Module 2.1: Replacing Windows 11 with Ubuntu Server 24.04 LTS](./02_os_installation_and_headless_setup/02_1_os_selection_and_ubuntu_install.ipynb) | Why Ubuntu Server 24.04 LTS beats Windows 11; full NVMe wipe & OpenSSH install | `hostnamectl` & `lsblk` on `homelab-gpu` |
 | **2** | **OS & Headless Setup** | [Module 2.2: Clamshell Mode, Thermal Capping & SSH Baseline](./02_os_installation_and_headless_setup/02_2_headless_lid_close_and_power_tuning.ipynb) | `HandleLidSwitch=ignore`, console screen blanking, power limits, SSH keys | Closed-lid SSH session & `sensors` thermal check |
-| **3** | **Lab Networking** | [Module 3.1: Gigabit Switch Topology & Unified Addressing](./03_network_expansion_and_cluster_topology/03_1_switch_topology_and_subnet_design.ipynb) | Wire 8-port switch, reserve `10.0.0.201`, join Tailscale mesh & SSH jump aliases | Switch wiring photo, `iperf3` & `tailscale status` |
+| **3** | **Lab Networking** | [Module 3.1: UniFi Switch Enterprise 8 PoE Topology & Static IP Plan](./03_network_expansion_and_cluster_topology/03_1_switch_topology_and_subnet_design.ipynb) | Wire `USW-Enterprise-8-PoE` (2.5GbE), reserve `10.0.0.201`, join Tailscale mesh & SSH jump aliases | Switch wiring photo, `iperf3` & `tailscale status` |
 | **4** | **GPU & Migration** | [Module 4.1: NVIDIA Drivers, Container Toolkit & Docker](./04_gpu_compute_and_workload_migration/04_1_nvidia_drivers_and_container_toolkit.ipynb) | Headless NVIDIA driver install, `nvidia-ctk`, CUDA test in Docker, `nvidia-smi` | `docker run --gpus all nvidia/cuda nvidia-smi` |
 | **4** | **GPU & Migration** | [Module 4.2: Offloading Immich Machine Learning & Transcoding](./04_gpu_compute_and_workload_migration/04_2_immich_ml_and_transcoding_offload.ipynb) | Deploy `immich-machine-learning:release-cuda` on laptop, strip ML from Pi, point Pi to `:3003` | CUDA ML logs on laptop & reduced RAM on Pi |
 | **5** | **Pi Core Services** | [Module 5.1: Workload Split Strategy & Pi-hole v6 DNS](./05_pi_core_services/05_1_pi_workload_strategy_and_pihole.ipynb) | What stays on the Pi & why; deploy Pi-hole v6 in Docker + Tailscale global DNS | Pi-hole v6 dashboard & blocked query log |
